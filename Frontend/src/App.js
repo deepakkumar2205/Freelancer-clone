@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem("x-Auth-token")) {
-      navigate("/home")
+      navigate("/")
     }
   }, []);
 
