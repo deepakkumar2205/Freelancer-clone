@@ -1,0 +1,17 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300&display=swap');
+
+.homeStyle{
+    background-image: url('https://www.pushengage.com/wp-content/uploads/2022/02/Best-Website-Welcome-Message-Examples.png');
+    height: 80vh;
+    background-repeat: no-repeat;
+    object-fit: scale-down;
+    background-size: contain;
+    
+/* font-family: 'Montserrat', sans-serif; */
+}
+
+.homeTop{
+    background-color:#f2f2df;
+    font-family: 'Dancing Script', cursive;
+}
