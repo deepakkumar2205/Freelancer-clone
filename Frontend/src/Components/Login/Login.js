@@ -39,12 +39,10 @@ const Login = () => {
         setButtonStatus(false)
         loginAxios(values)
         .then((res)=>{
-          console.log(res.data);
           contextData.setRole(res.data.roleId)
           contextData.setPersonId(res.data._id)
           localStorage.setItem('person-token',res.data._id)
         setButtonStatus(true)
-        console.log('sdf');
         if(res.status === 200){
           toastSuccess("Login Successfull")
           localStorage.setItem("x-Auth-token",res.data.token)
@@ -57,7 +55,6 @@ const Login = () => {
         })
         .catch((err)=>{
           setButtonStatus(true)
-          console.log(err);
           if(err.response.status === 401){
             errorToast("Invalid Credentials")
           }else if(err.response.status === 406){

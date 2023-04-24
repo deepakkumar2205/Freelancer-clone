@@ -130,3 +130,14 @@ export const axiosGetProjectsApplied =  (id)=>{
       }
       })
 }
+
+export const axiosUpdateCompleted =  (id)=>{
+  return axios({
+        url:`${API}/freelance/updateCompletedStatus`,
+        method:"put",
+        data:id,
+        headers:{
+          "x-auth-token":localStorage.getItem("x-Auth-token")
+      }
+      })
+}

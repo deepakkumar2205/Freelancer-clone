@@ -3,7 +3,7 @@ import { auth } from '../middleware/auth.js';
 import {
   acceptProjectInDB,
   applyProjectInDB,
-  createPost, deleteProjectFromDB, getAllProjectsFromDB, getMyProjectsFromDB, getProjectsAppliedFromDB
+  createPost, deleteProjectFromDB, getAllProjectsFromDB, getMyProjectsFromDB, getProjectsAppliedFromDB, updateStatusToCompletedInDB
 } from "../services/freelance.service.js";
 const router = express.Router();
 
@@ -15,6 +15,7 @@ router.post('/postProject',auth,express.json(),async function(request, response)
         ...data,
         ...info,
         date:new Date(),
+        completed:false,
         whoApplied:[]
     }
     // delete dataToInsert.iat
@@ -24,17 +25,12 @@ router.post('/postProject',auth,express.json(),async function(request, response)
     }else{
       response.json("unsuccessfull because of role")
     }
-    console.log(dataToInsert);
   })
 
 router.get('/getAllProjects',auth,express.json(),async function(request, response){
     
     const resData  = await getAllProjectsFromDB()
     response.send(resData)
-    // if(resData === null){
-    //   response.status(404).send({message:"not-available"})
-    // }else{
-    // }
 })
 
 router.get('/getMyProjects',auth,express.json(),async function(request, response){
@@ -47,7 +43,6 @@ router.get('/getMyProjects',auth,express.json(),async function(request, response
 router.put('/ApplyProject',auth,express.json(),async function(request, response){
    const info=request.info;
    const id=request.body
-   console.log(id.project_Id);
    const result = await applyProjectInDB(info,id.project_Id);
    response.send(result)
 })
@@ -57,6 +52,12 @@ router.put('/acceptProject',auth,express.json(),async function(request, response
    const ids=request.body
    
    const result = await acceptProjectInDB(ids);
+   response.send(result)
+})
+
+router.put('/updateCompletedStatus',auth,express.json(),async function(request, response){
+   const ids=request.body
+   const result = await updateStatusToCompletedInDB(ids);
    response.send(result)
 })
 

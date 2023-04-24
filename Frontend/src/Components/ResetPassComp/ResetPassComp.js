@@ -41,7 +41,7 @@ const ResetPassComp = () => {
       validationSchema: userValidationSchema,
       onSubmit: (values) => {
         setStatusButton(false)
-        console.log(tempEmail);
+        // console.log(tempEmail);
         changePassAxios({email:tempEmail , password:values.password},string)
         .then((res)=>{
           setStatusButton(true)

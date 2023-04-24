@@ -1,19 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Tooltip } from 'react-tooltip';
 import Context from '../../Context/Context';
-import { axiosGetProjectsApplied } from '../../Services/axios';
+import { axiosGetProjectsApplied, axiosUpdateCompleted } from '../../Services/axios';
+import { toastSuccess } from '../../Services/tostify';
 
 const Applied = () => {
     const [state, setState] = useState([]);
     const contextData = useContext(Context);
 
-    useEffect(()=>{
+    function updateDataToApplied() {
       axiosGetProjectsApplied()
-        .then(res=>{
-          setState(res.data)
+        .then(res => {
+          setState(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+    useEffect(()=>{
+      updateDataToApplied();
+
+    },[])
+
+    const Applied=(data)=>{
+        axiosUpdateCompleted({_id:data._id})
+        .then((res)=>{
+          if(res.status ===200){
+            toastSuccess("Updated Successfully")
+            updateDataToApplied()
+          }
         })
         .catch((err)=>console.log(err))
-    },[])
+    }
    
   return (
       <div>
@@ -53,15 +69,16 @@ const Applied = () => {
                           <h6 style={{color:'#c1c1c1'}}>status: Assigned to someone</h6>}
                         </div>
                       </div>
-                        {data.status === contextData.personId &&
+                        {data.status === contextData.personId && !data.completed &&
                             <button type="button" 
                                     className="btn btn-primary btn-sm"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="top" 
                                     data-tooltip-content='Click when you complete the project.'
                                     data-tooltip-id="my-tooltip"
-                                    onClick={()=>console.log('completed')}
+                                    onClick={()=>Applied(data)}
                             >Completed</button>}
+                        {data.completed && data.status === contextData.personId &&<h5>Your Completed status is Updated to the Client! Good Job!</h5>}
                         <Tooltip id='my-tooltip' place="top"></Tooltip>
                     </div>
                   </div>

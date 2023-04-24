@@ -51,7 +51,7 @@ const Signup = () => {
       validationSchema: userValidationSchema,
       onSubmit: (values) => {
         setButtonLoader(false)
-        console.log(values)
+        // console.log(values)
         singUpAxios(values).then((res)=>{
           if(res.status === 200){
             toastSuccess("SignUp Successfull ")

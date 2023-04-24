@@ -19,12 +19,8 @@ const Emailverify = () => {
           }
         })
         .catch((err)=>{
-            console.log(err);
             if(err.response.data.message === "invalid credential"){
                 setFlag("invalid")
-            }else{
-                console.log(err)
-
             }
         })
     },[])

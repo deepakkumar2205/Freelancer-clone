@@ -21,7 +21,8 @@ const Provider = (props) => {
    
     function getAllProjectFunc(){
       axiosGetProjectsAll()
-      .then(res=>{console.log(res.data);
+      .then(res=>{
+        // console.log(res.data);
                   setAllProject(res.data)})
       .catch((err)=>console.log(err))
     }

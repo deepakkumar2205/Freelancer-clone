@@ -7,10 +7,8 @@ const Table = ({tableData, projectId,status}) => {
     const contextData = useContext(Context);
 
     const handleAccept=(id)=>{
-        console.log({personId:id,projectId});
         axiosAcceptProject({personId:id,projectId})
         .then((res)=>{
-            console.log(res)
             if(res.status ===200){
                 toastSuccess("Accepted")
             }
@@ -22,7 +20,6 @@ const Table = ({tableData, projectId,status}) => {
     const handleDelete=(id)=>{
         axiosDeleteProject({id})
         .then((res)=>{
-            console.log(res)
             if(res.status ===200){
                 toastSuccess("Deleted Successfull")
             }

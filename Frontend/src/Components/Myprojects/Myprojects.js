@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Context from '../../Context/Context';
-import { axiosGetMyProjects } from '../../Services/axios';
 import Table from './Table';
-import { GetMyprojectFunc } from '../../Services/Funcitons';
 
 const Myprojects = () => {
-    const [state, setState] = useState([]);
+    
     const contextData = useContext(Context);
-    // console.log(contextData.role);
+    
   useEffect(()=>{
      contextData.getMyProjectsFunc()
   },[])
+
   return (
     <div>
     <br />
@@ -51,6 +50,9 @@ const Myprojects = () => {
                   <hr />
                   <Table tableData={data.whoApplied} projectId={data._id} status={data.status}/>
                 </div>
+                {data.completed && <div className='d-flex justify-content-center bg-success'>
+                  <h5>Your Project is Completed</h5>
+                </div>}
               </div>
               <br />
               </div>

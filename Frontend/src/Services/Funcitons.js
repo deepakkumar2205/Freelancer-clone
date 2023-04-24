@@ -6,7 +6,7 @@ export function GetMyprojectFunc(){
     const contextData = useContext(Context);
     axiosGetMyProjects()
       .then(res=>{
-        console.log(res.data)
+        // console.log(res.data)
         contextData.setMyProjects(res.data)
       })
       .catch((err)=>console.log(err))

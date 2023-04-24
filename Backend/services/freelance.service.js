@@ -26,7 +26,10 @@ export async function applyProjectInDB(info,project_Id) {
 
 export async function acceptProjectInDB(ids) {
     return await client.db(dataBaseName).collection("projects").updateOne({_id:new ObjectId(ids.projectId)},{$set: {status:ids.personId}})
+}
 
+export async function updateStatusToCompletedInDB(ids) {
+    return await client.db(dataBaseName).collection("projects").updateOne({_id:new ObjectId(ids._id)},{$set: {completed:true}})
 }
 
 export async function deleteProjectFromDB(id) {

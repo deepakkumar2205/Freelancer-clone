@@ -47,7 +47,6 @@ const Post = () => {
       const skillsArr=values.skills.split(",")
       axiosPostProject({...values,skills:skillsArr,status:""})
       .then(res=>{
-        console.log(res)
         if(res.status === 200){
           toastSuccess("Projected Post Successfully")
           resetForm()
