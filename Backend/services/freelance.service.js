@@ -38,6 +38,3 @@ export async function getProjectsAppliedFromDB(id) {
    return await client.db(dataBaseName).collection("projects").find({whoApplied:{$elemMatch:{userId:id}}}).toArray()
 
 }
-
-
-// vivade9962@raotus.com
