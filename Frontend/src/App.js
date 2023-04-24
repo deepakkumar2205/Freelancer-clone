@@ -12,6 +12,7 @@ import Post from "./Components/Post/Post";
 import ResetPassComp from "./Components/ResetPassComp/ResetPassComp";
 import Signup from "./Components/Signup/Signup";
 import Home from "./Components/Home/Home";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
 
@@ -30,11 +31,11 @@ function App() {
         <Route path="/login"          element={<Login />} />
         <Route path="/password-reset" element={<PasswordRes />} />
         <Route path="/signup"         element={<Signup />} />
-        <Route path="/post"           element={<Post />} />
-        <Route path="/projects"       element={<AllProjects />} />
-        <Route path="/myprojects"     element={<Myprojects />} />
-        <Route path="/applied"        element={<Applied />} />
-        <Route path="/"               element={<Home />} />
+        <Route path="/post"           element={<ProtectedRoute><Post /></ProtectedRoute>}  />
+        <Route path="/projects"       element={<ProtectedRoute><AllProjects /></ProtectedRoute>} />
+        <Route path="/myprojects"     element={<ProtectedRoute><Myprojects /></ProtectedRoute>} />
+        <Route path="/applied"        element={<ProtectedRoute><Applied /></ProtectedRoute>} />
+        <Route path="/"               element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route
           path="/pas-reset-completion/:string"
           element={<ResetPassComp />}

@@ -7,8 +7,6 @@ import {
 } from "../services/freelance.service.js";
 const router = express.Router();
 
-//!below api is foront end api to use to send mail.
-const API = "https://bulk-emailtool.netlify.app";
 
 router.post('/postProject',auth,express.json(),async function(request, response){
     const data= request.body;
